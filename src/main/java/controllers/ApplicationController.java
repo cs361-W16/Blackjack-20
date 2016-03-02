@@ -34,7 +34,7 @@ public class ApplicationController {
         return Results.html();
     }
 
-    public Result AcesUp() {
+    public Result Blackjack() {
         return Results.html().template("views/Blackjack/Blackjack.flt.html");
     }
     public Result gameGet(){
