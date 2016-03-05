@@ -10,14 +10,14 @@ import static org.junit.Assert.*;
 public class testGame {
 
     @Test
-    public void testAmericanGameCreation() {
-        Game g = new AmericanGame();
+    public void testGameCreation() {
+        Game g = new Game();
         assertNotNull(g);
     }
 
     @Test
-    public void testAmericanDeckCount(){
-        AmericanGame g = new AmericanGame();
+    public void testDeckCount(){
+        Game g = new Game();
         assertEquals(52,g.deck.size());
         g.remove(2);
         assertEquals(51,g.deck.size());
@@ -25,13 +25,13 @@ public class testGame {
 
     @Test
     public void testGameBuildDeck(){
-        AmericanGame g = new AmericanGame();
+        Game g = new Game();
         assertEquals(52,g.deck.size());
     }
 
     @Test
     public void testGameInit(){
-        AmericanGame g = new AmericanGame();
+        Game g = new Game();
         g.buildDeck();
         g.shuffle();
         assertNotEquals(2,g.deck.get(0).getValue());
@@ -39,10 +39,10 @@ public class testGame {
 
     @Test
     public void testGameStart(){
-        AmericanGame g = new AmericanGame();
+        Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        g.dealFour();
+        g.dealHands();
         assertEquals(1,g.cols.get(0).size());
         assertEquals(1,g.cols.get(1).size());
         assertEquals(1,g.cols.get(2).size());
@@ -51,7 +51,7 @@ public class testGame {
 
     @Test
     public void testCustomDeal(){
-        AmericanGame g = new AmericanGame();
+        Game g = new Game();
         g.buildDeck();
         g.customDeal(0,3,6,9);
         assertEquals("2Clubs",g.cols.get(0).get(0).toString());
@@ -62,7 +62,7 @@ public class testGame {
 
     @Test
     public void testRemoveFunction(){
-        AmericanGame g = new AmericanGame();
+        Game g = new Game();
         g.buildDeck();
         g.customDeal(0,3,6,9);
         g.remove(2);
