@@ -13,28 +13,29 @@ public abstract class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
-    public Game(){
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
+    public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
+        cols.add(new ArrayList<Card>()); //0
+        cols.add(new ArrayList<Card>()); //1
+        cols.add(new ArrayList<Card>()); //2
         this.buildDeck();
     }
 
 
     public abstract void buildDeck();
 
-
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(deck, new Random(seed));
     }
-
-    public void dealFour() {
-        for(int i = 0; i < 4; i++){
-            cols.get(i).add(deck.get(deck.size()-1));
-            deck.remove(deck.size()-1);
-        }
+    public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
+        cols.get(i).add(deck.get(deck.size()-1));
+        deck.remove(deck.size()-1);
+    }
+    public void dealHands() {
+        hit(0);
+        hit(0);
+        hit(1);
+        hit(1);
     }
 
     //customDeal to setup game for testing purposes
