@@ -61,6 +61,15 @@ public class testGame {
     }
 
     @Test
+    public void testSplit(){
+        Game g = new Game();
+        g.buildDeck();
+        g.customDeal(1,2,0,14);
+        g.split();
+        assert(g.cols.get(1).get(3) == g.cols.get(2).get(0));
+    }
+
+    @Test
     public void testRemoveFunction(){
         Game g = new Game();
         g.buildDeck();
@@ -68,6 +77,4 @@ public class testGame {
         g.remove(2);
         assertEquals(0,g.cols.get(2).size());
     }
-
-
 }

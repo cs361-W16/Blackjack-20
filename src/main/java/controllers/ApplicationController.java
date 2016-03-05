@@ -40,11 +40,15 @@ public class ApplicationController {
         Game g = new Game();
         g.shuffle();
         g.dealHands();
-
         return Results.json().render(g);
     }
 
-    public Result hit(Context context, Game g, int i) {
+    public Result split(Context context, Game g) {
+        g.split();
+        return Results.json().render(g);
+    }
+
+    public Result hit(Context context, @PathParam("column") int i, Game g) {
         if (context.getRequestPath().contains("hit")) {
             g.hit(i);
         }
