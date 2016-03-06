@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2013 the original author or authors.
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,12 +16,10 @@
 
 package controllers;
 
-import models.Card;
 import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
-import models.AmericanGame;
 
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
@@ -37,27 +35,28 @@ public class ApplicationController {
     public Result Blackjack() {
         return Results.html().template("views/Blackjack/Blackjack.flt.html");
     }
-    public Result gameGet(){
-        Game g = new AmericanGame();
+
+    public Result gameGet() {
+        Game g = new Game();
         g.shuffle();
         g.dealHands();
 
         return Results.json().render(g);
     }
 
-    public Result hit(Context context, AmericanGame g, int i) {
-        if(context.getRequestPath().contains("hit")){
+    public Result hit(Context context, Game g, int i) {
+        if (context.getRequestPath().contains("hit")) {
             g.hit(i);
         }
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, AmericanGame g){
+    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g) {
         g.remove(colNumber);
-        return  Results.json().render(g);
+        return Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, AmericanGame g) {
+    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g) {
         g.move(colFrom, colTo);
         return Results.json().render(g);
     }
