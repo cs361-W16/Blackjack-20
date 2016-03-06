@@ -40,14 +40,14 @@ public class ApplicationController {
     public Result gameGet(){
         Game g = new AmericanGame();
         g.shuffle();
-        g.dealFour();
+        g.dealHands();
 
         return Results.json().render(g);
     }
 
-    public Result dealPost(Context context, AmericanGame g) {
-        if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+    public Result hit(Context context, AmericanGame g, int i) {
+        if(context.getRequestPath().contains("hit")){
+            g.hit(i);
         }
         return Results.json().render(g);
     }
