@@ -33,8 +33,8 @@ public class ApplicationController {
         return Results.html();
     }
 
-    public Result acesUp() {
-        return Results.html().template("views/AcesUp/AcesUp.flt.html");
+    public Result Blackjack() {
+        return Results.html().template("views/Blackjack/Blackjack.flt.html");
     }
     
     public Result gameGet(){
@@ -45,6 +45,12 @@ public class ApplicationController {
 
         return Results.json().render(g);
     }
+    public Result hit(Context context, Game g, @PathParam("column") int i) {
+        if (context.getRequestPath().contains("hit")) {
+            g.hit(i);
+        }
+        return Results.json().render(g);
+    }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
@@ -53,13 +59,13 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
-        g.remove(colNumber);
-        return  Results.json().render(g);
-    }
+//    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+//        g.remove(colNumber);
+//        return  Results.json().render(g);
+//    }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g) {
-        g.move(colFrom, colTo);
-        return Results.json().render(g);
-    }
+//    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g) {
+//        g.move(colFrom, colTo);
+//        return Results.json().render(g);
+//    }
 }
