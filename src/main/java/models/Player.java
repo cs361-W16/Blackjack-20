@@ -7,6 +7,7 @@ public class Player
     public int money;
     public int betAmount;
     public int isBet;
+    public boolean isSplit;
 
     public Player()
     {
@@ -14,6 +15,7 @@ public class Player
         money = 10;
         isBet = 0; //amount player bets
         betAmount = 2;
+        isSplit = false;
     }
 
     public void bet()

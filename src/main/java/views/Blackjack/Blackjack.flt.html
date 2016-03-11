@@ -8,13 +8,10 @@
 
 <button id = "hit1"type="button">Hit Col 1</button>
 <button id = "hit2"type="button">Hit Col 2</button>
-
-
-<button id = "stayButton"type="button">Stay</button>
-<button id = "splitButton"type="button">Split</button>
-<button id = "doubleDownButton"type="button">Double Down</button>
-<button id = "newGameButton"type="button">New Game</button>
-
+<button id = "stay"type="button">Stay</button>
+<button id = "split"type="button">Split</button>
+<button id = "doubleDown"type="button">Double Down</button>
+<button id = "newgame"type="button">New Game</button>
 <BR>
 
 <!--<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>-->
@@ -294,7 +291,6 @@ $( '.columnOfCards .cardLocation' ).attr("background","");
         if(key == 0 && game.dealersTurn == "f"){
         $( '#c0 .l'+key ).attr("background","assets/cardback.png");
     }
-console.log(game.dealersTurn);
 
 
 
@@ -673,6 +669,58 @@ $("#hit2").click(function(){
 $.ajax({
   type: "POST",
   url: "/hit2",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#stay").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/hit2",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#split").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/split",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#stay").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/stay",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#newgame").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/newGame",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;

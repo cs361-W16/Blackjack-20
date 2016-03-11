@@ -40,9 +40,13 @@ public class ApplicationController {
     
     public Result gameGet(){
         Game g = new Game();
-        g.buildDeck();
         g.shuffle();
         g.dealHands();
+        return Results.json().render(g);
+    }
+
+    public Result newGame(Context context, Game g) {
+        g.newGame();
         return Results.json().render(g);
     }
 
