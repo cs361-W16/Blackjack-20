@@ -98,7 +98,7 @@ public class testGame {
         int i = 1;
         int testBetAmount = 2;
 
-        g.doubleDown(i);
+        p.doubleDown(i,g);
 
         assert(p.money == (p.money - (2*testBetAmount)));
         assert(p.isBet == (p.isBet + testBetAmount));

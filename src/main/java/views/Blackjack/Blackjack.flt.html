@@ -10,7 +10,8 @@
 <button id = "hit2"type="button">Hit Col 2</button>
 <button id = "stay"type="button">Stay</button>
 <button id = "split"type="button">Split</button>
-<button id = "doubleDown"type="button">Double Down</button>
+<button id = "doubleDown1"type="button">Double Down 1</button>
+<button id = "doubleDown2"type="button">Double Down 2</button>
 <button id = "newgame"type="button">New Game</button>
 
 <BR>
@@ -707,6 +708,31 @@ $.ajax({
 });
 });
 
+$("#doubleDown1").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/doubleDown1",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#doubleDown2").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/doubleDown2",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
 
 function removeCard(colNumber){
 $.ajax({

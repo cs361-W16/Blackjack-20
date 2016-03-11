@@ -18,6 +18,12 @@ public class Player
         isSplit = false;
     }
 
+    public void doubleDown(int i, Game g){
+        bet();
+        g.hit(i); //TODO ACTUALLY IMPLEMENT THIS I THINK IT"S WRONG ALSO CHECK TO MAKE SURE YOU CAN DO IT
+        //stay();
+    }
+
     public void bet()
     {
         if (money >= betAmount) {
