@@ -64,7 +64,6 @@ public class Game {
         }
     }
 
-
     public void newGame(){
         this.cols.clear();
         this.p.score= 0;
