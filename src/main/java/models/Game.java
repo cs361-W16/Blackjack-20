@@ -21,7 +21,13 @@ public class Game {
         this.buildDeck();
         dealersTurn = "f";
     }
-
+   public int getColScore(int columnNumber)
+    {
+        int total = 0;
+        for(int i = 0; i < this.cols.get(columnNumber).size(); i++)
+            total += this.cols.get(columnNumber).get(i).getValue();
+        return total;
+    }
     public void split(){
         if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
             this.move(1,2); //moves one of the cards over to the new stack
@@ -51,7 +57,7 @@ public class Game {
         hit(0);
         hit(1);
         hit(1);
-    }
+     }
 
     public void doubleDown(int i){
         Player p = new Player();
