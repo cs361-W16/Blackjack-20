@@ -70,10 +70,8 @@ public class testGame {
     public void testHit()
     {
         int i = 1;
+        g.hit(i);
 
-        g.cols.get(i).add(g.deck.get(g.deck.size() - 1));
-        g.deck.remove(g.deck.size()-1);
-        //assert card from deck is dealt
         assert(g.deck.size() ==(g.deck.size()-1));
 
     }
@@ -82,20 +80,16 @@ public class testGame {
     public void testDoubleDown()
     {
         int i = 1;
-        int testBetAmount = 10;
+        int testBetAmount = 2;
 
         g.doubleDown(i);
 
-        //Do I need this? Because this is already tested in bet, hit and stay functions which are part of doubleDown
-        assert(p.money == (p.money - testBetAmount));
+        assert(p.money == (p.money - (2*testBetAmount)));
         assert(p.isBet == (p.isBet + testBetAmount));
         assert(g.deck.size() ==(g.deck.size()-1));
         //assert stay();
 
-        //Not sure but:
-        //bet function gets tested by testBet function anyway
-        //hit function gets tested by testHit function anyway
-        //stay function gets tested by testStay function anyway
+
 
     }
 

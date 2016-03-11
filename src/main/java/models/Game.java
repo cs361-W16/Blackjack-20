@@ -46,8 +46,7 @@ public class Game {
 
     public void doubleDown(int i){
         Player p = new Player();
-        p.bet(10); // 10 is hardcoded, ideally bet should be acquired from player
-        p.bet(10);
+        p.bet();
         hit(i);
         //stay();
     }

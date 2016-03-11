@@ -5,18 +5,18 @@ public class Player
 {
     public int score;
     public int money;
-    public int initBetAmount;
+    public int betAmount;
     public int isBet;
 
     public Player()
     {
         score = 0;
-        money = 100;
+        money = 10;
         isBet = 0; //amount player bets
-        initBetAmount = 5;
+        betAmount = 2;
     }
 
-    public void bet(int betAmount) //pass betting amount to bet function
+    public void bet()
     {
         if (money >= betAmount) {
             money = money - betAmount;
@@ -27,11 +27,5 @@ public class Player
             System.out.println("Not enough money");
         }
     }
-
-    public void initBet() //call initBet function when game starts
-    {
-        bet(initBetAmount);
-    }
-
 
 }
