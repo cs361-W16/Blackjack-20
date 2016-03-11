@@ -17,7 +17,18 @@
 <BR>
 
 <!--<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>-->
-
+<table>
+    <tr class="playerscore">
+        <tk>Player Score: </tk>
+        <tk id="playerscore"></tk>
+    </tr>
+</table>
+<table>
+    <tr class="dealerscore">
+        <tk>Dealer Score: </tk>
+        <tk id="dealerscore"></tk>
+    </tr>
+</table>
 <table class = "center">
     <tr class="title">
         <td>Dealer</td>
@@ -92,6 +103,8 @@ var game;
 
 function display(game) {
 console.log(game);
+$('#playerscore').html(game.p.score);
+$('#dealerscore').html(game.dealerScore);
 $( '.columnOfCards .cardLocation' ).attr("background","");
 
     $.each(game.cols[0], function( key, val ) {

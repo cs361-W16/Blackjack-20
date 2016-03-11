@@ -14,6 +14,7 @@ public class Game {
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     public String dealersTurn;
     public Player p;
+    public int dealerScore;
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
@@ -22,6 +23,7 @@ public class Game {
         this.buildDeck();
         dealersTurn = "f";
         p = new Player();
+        dealerScore = 0;
     }
    public int getColScore(int columnNumber)
     {
