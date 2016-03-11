@@ -30,8 +30,12 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/").with(ApplicationController.class, "index");
         router.GET().route("/Blackjack").with(ApplicationController.class, "Blackjack");
         router.GET().route("/game").with(ApplicationController.class, "gameGet");
+        router.POST().route("/hit/{column}").with(ApplicationController.class, "hit"); //hope this works like I want it to
+        router.POST().route("/moveCard/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCard");
+        router.POST().route("/removeCard/{column}").with(ApplicationController.class, "removeCard");
+        router.POST().route("/split").with(ApplicationController.class, "removeCard");
         router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
-        router.POST().route("/hit").with(ApplicationController.class, "hit");
+
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

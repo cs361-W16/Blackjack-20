@@ -24,6 +24,12 @@ public class Game {
         p = new Player();
     }
 
+    public void split(){
+        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
+            this.move(1,2); //moves one of the cards over to the new stack
+            //TODO BETTING FUNCTION GOES HERE
+    }
+
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
             deck.add(new Card(i,Suit.Clubs));
@@ -51,9 +57,8 @@ public class Game {
 
     public void doubleDown(int i){
 
-        this.p.bet(10); // 10 is hardcoded, ideally bet should be acquired from player
-        this.p.bet(10);
-        this.hit(i);
+        p.bet();
+        hit(i);
         //stay();
     }
 
@@ -92,10 +97,7 @@ public class Game {
     }
 
     private boolean colHasCards(int colNumber) {
-        if(this.cols.get(colNumber).size()>0){
-            return true;
-        }
-        return false;
+        return this.cols.get(colNumber).size() > 0;
     }
 
     private Card getTopCard(int columnNumber) {
@@ -106,7 +108,7 @@ public class Game {
     }
 
     public void move(int colFrom, int colTo) {
-        if (colHasCards(colTo) == false)
+        if (!colHasCards(colTo))
         {
             Card cardToMove = getTopCard(colFrom);
             this.removeCardFromCol(colFrom);
