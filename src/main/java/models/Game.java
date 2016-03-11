@@ -10,7 +10,6 @@ import java.util.Random;
 public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
-
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     public String dealersTurn;
     public Player p;
@@ -21,11 +20,7 @@ public class Game {
         cols.add(new ArrayList<Card>()); //0
         cols.add(new ArrayList<Card>()); //1
         cols.add(new ArrayList<Card>()); //2
-        this.buildDeck();
-        dealersTurn = "f";
         p = new Player();
-        dealerScore = 0;
-        splitScore = 0;
     }
    public int getColScore(int columnNumber)
     {
@@ -67,15 +62,18 @@ public class Game {
     }
 
     public void newGame(){
-        this.cols.clear();
+        this.cols.get(0).clear();
+        this.cols.get(1).clear();
+        this.cols.get(2).clear();
+        this.deck.clear();
+        this.buildDeck();
+        this.shuffle();
+        this.dealHands();
         this.p.score= 0;
         this.dealerScore = 0;
         this.splitScore = 0;
-        this.deck.clear();
-        this.buildDeck();
         this.dealersTurn = "f";
         this.p.isSplit = false;
-        this.dealHands();
     }
 
     public void shuffle() {

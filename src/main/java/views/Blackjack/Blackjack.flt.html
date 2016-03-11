@@ -681,7 +681,7 @@ $.ajax({
 $("#stay").click(function(){
 $.ajax({
   type: "POST",
-  url: "/hit2",
+  url: "/stay",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -695,19 +695,6 @@ $("#split").click(function(){
 $.ajax({
   type: "POST",
   url: "/split",
-  data: JSON.stringify(game),
-  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-        game = data;
-        display(data);},
-  contentType:"application/json; charset=utf-8",
-  dataType:"json",
-});
-});
-
-$("#stay").click(function(){
-$.ajax({
-  type: "POST",
-  url: "/stay",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
