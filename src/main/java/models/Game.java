@@ -13,6 +13,7 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     public String dealersTurn;
+    public Player p;
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
@@ -20,6 +21,7 @@ public class Game {
         cols.add(new ArrayList<Card>()); //2
         this.buildDeck();
         dealersTurn = "f";
+        p = new Player();
     }
    public int getColScore(int columnNumber)
     {
@@ -60,7 +62,7 @@ public class Game {
      }
 
     public void doubleDown(int i){
-        Player p = new Player();
+
         p.bet();
         hit(i);
         //stay();

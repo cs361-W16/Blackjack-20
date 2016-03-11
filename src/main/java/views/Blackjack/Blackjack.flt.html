@@ -25,6 +25,9 @@
         <td >Split</td>
     </tr>
 
+
+
+
     <tr><td class="columnOfCards" id="c0">
         <table>
             <tr><td class="cardLocation l0" background = "" ></td></tr>
@@ -89,7 +92,6 @@ var game;
 
 function display(game) {
 console.log(game);
-
 $( '.columnOfCards .cardLocation' ).attr("background","");
 
     $.each(game.cols[0], function( key, val ) {
@@ -98,6 +100,7 @@ $( '.columnOfCards .cardLocation' ).attr("background","");
     if(val.value==2&& val.suit =="Clubs"){
         $( '#c0 .l'+key ).attr("background","assets/images/2_of_clubs.png");
         }
+
     if(val.value==3&& val.suit =="Clubs"){
         $( '#c0 .l'+key ).attr("background","assets/images/3_of_clubs.png");
         }
