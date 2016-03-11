@@ -28,11 +28,12 @@ public class Player
         }
     }
 
-    public void stay(Game g) {
+    public void stay() {
+        Game g = new Game();
         int dealScore = g.getColScore(0);
         while(dealScore <= 16) { //dealer keeps hitting
             g.hit(0);
         }
-        return;
+        //return;
         }
 }

@@ -8,6 +8,7 @@ import org.junit.Test;
 public class testPlayer {
 
     Player p = new Player();
+    Game g = new Game();
 
     @Test
     public void testBet()
@@ -28,6 +29,15 @@ public class testPlayer {
         p.bet();
         assert(System.out.equals("Not enough money"));
     }
+
+    @Test
+    public void testStay()
+    {
+        int dealScore = g.getColScore(0);
+        p.stay();
+        assert(dealScore >= 17);
+    }
+
 
 
 }

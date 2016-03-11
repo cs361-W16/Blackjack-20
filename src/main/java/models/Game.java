@@ -82,10 +82,10 @@ public class Game {
      }
 
     public void doubleDown(int i){
-
+        Game g = new Game();
         p.bet();
         hit(i);
-        //stay();
+        p.stay();
     }
 
     //customDeal to setup game for testing purposes

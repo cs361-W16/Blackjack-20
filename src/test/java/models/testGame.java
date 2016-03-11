@@ -97,15 +97,14 @@ public class testGame {
     {
         int i = 1;
         int testBetAmount = 2;
+        int dealScore = g.getColScore(0);
 
         g.doubleDown(i);
 
         assert(p.money == (p.money - (2*testBetAmount)));
         assert(p.isBet == (p.isBet + testBetAmount));
         assert(g.deck.size() ==(g.deck.size()-1));
-        //assert stay();
-
-
+        assert(dealScore >= 17);
 
     }
 }
