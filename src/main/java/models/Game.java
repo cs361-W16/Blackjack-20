@@ -82,18 +82,16 @@ public class Game {
         Collections.shuffle(deck, new Random(seed));
     }
     public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
+        if (i == 2 && this.p.isSplit == false)
+            return;
         cols.get(i).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
         if(i == 0)
             this.dealerScore = this.getColScore(0);
-        else if (i == 1)
-            this.p.score = this.getColScore(1);
-        else {
-            if (this.p.isSplit == true) {
-                this.p.score = this.getColScore(2);
-            }
-        }
+        else
+            this.p.score = this.getColScore(i);
     }
+
     public void dealHands() {
         hit(0);
         hit(0);
