@@ -13,22 +13,30 @@
 <button id = "stayButton"type="button">Stay</button>
 <button id = "splitButton"type="button">Split</button>
 <button id = "doubleDownButton"type="button">Double Down</button>
+<button id = "newGameButton"type="button">New Game</button>
 
 <BR>
 
 <!--<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>-->
 <table>
-    <tr class="playerscore">
-        <tk>Player Score: </tk>
-        <tk id="playerscore"></tk>
-    </tr>
-</table>
-<table>
     <tr class="dealerscore">
-        <tk>Dealer Score: </tk>
-        <tk id="dealerscore"></tk>
+        <td>Dealer Score: </td>
+        <td id="dealerscore"></td>
+    </tr>
+    <tr class="playerscore">
+        <td>Player Score: </td>
+        <td id="playerscore"></td>
+    </tr>
+    <tr class="money">
+        <td>Money: </td>
+        <td id="money"></td>
+    </tr>
+    <tr class="isBet">
+        <td>Bet Amount: </td>
+        <td id="isBet"></td>
     </tr>
 </table>
+
 <table class = "center">
     <tr class="title">
         <td>Dealer</td>
@@ -104,9 +112,13 @@ var game;
 function display(game) {
 console.log(game);
 $('#playerscore').html(game.p.score);
+$('#money').html(game.p.money);
+$('#isBet').html(game.p.isBet);
+
 if(game.dealersTurn == "t"){
 $('#dealerscore').html(game.dealerScore);
 }
+
 $( '.columnOfCards .cardLocation' ).attr("background","");
 
     $.each(game.cols[0], function( key, val ) {
@@ -631,7 +643,7 @@ console.log(game.dealersTurn);
 
     });
 
- 
+
 
 
 

@@ -30,10 +30,10 @@ public class Game {
    public int getColScore(int columnNumber)
     {
         int total = 0;
-        boolean ace = false;
+        int ace = 0;
         for(int i = 0; i < this.cols.get(columnNumber).size(); i++) {
             if (this.cols.get(columnNumber).get(i).getValue() == 14) {
-                ace = true;
+                ace ++;
                 total += 11;
             } else {
                 if (this.cols.get(columnNumber).get(i).getValue() == 11 || this.cols.get(columnNumber).get(i).getValue() == 12 || this.cols.get(columnNumber).get(i).getValue() == 13) {
@@ -42,10 +42,10 @@ public class Game {
                     total += this.cols.get(columnNumber).get(i).getValue();
                 }
             }
-            if(total > 21){
-                total -= 11;
-                total++;
-            }
+//            if(total > 21 && ace>1){
+//                total -= 11;
+//                total++;
+//            }
         }
         return total;
     }
@@ -71,6 +71,7 @@ public class Game {
         this.dealerScore = 0;
         this.splitScore = 0;
         this.deck.clear();
+        this.dealHands();
 
     }
 
@@ -85,6 +86,19 @@ public class Game {
             this.dealerScore = this.getColScore(0);
         else
             this.p.score = this.getColScore(i);
+
+        if(this.p.score > 21){
+            this.p.money-= this.p.betAmount;
+            try {
+                Thread.sleep(3000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            //this.newGame();
+
+
+        }
+
     }
     public void dealHands() {
         hit(0);
