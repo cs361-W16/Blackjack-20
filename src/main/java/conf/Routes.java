@@ -25,8 +25,8 @@ import controllers.ApplicationController;
 public class Routes implements ApplicationRoutes {
 
     @Override
-    public void init(Router router) {  
-        
+    public void init(Router router) {
+
         router.GET().route("/").with(ApplicationController.class, "index");
         router.GET().route("/Blackjack").with(ApplicationController.class, "Blackjack");
         router.GET().route("/game").with(ApplicationController.class, "gameGet");
@@ -34,13 +34,15 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/moveCard/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCard");
         router.POST().route("/removeCard/{column}").with(ApplicationController.class, "removeCard");
         router.POST().route("/split").with(ApplicationController.class, "removeCard");
+        router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
+
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    
         router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
         router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
-        
+
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page
         ///////////////////////////////////////////////////////////////////////

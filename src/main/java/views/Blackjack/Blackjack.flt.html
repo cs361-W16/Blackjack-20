@@ -1,4 +1,4 @@
-<center><h1>Aces Up</h1></center>
+<center><h1>Blackjack</h1></center>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
@@ -7,32 +7,20 @@
 <div id ="topright">
     <button id="dealButton"><img src="../../assets/cardback.png" width="160" height="244" border="0" alt="javascript button"></button>
 </div>
+<button id = "hitButton"type="button">Hit</button>
+<button id = "stayButton"type="button">Stay</button>
+<button id = "splitButton"type="button">Split</button>
+<button id = "doubleDownButton"type="button">Double Down</button>
 
-<div id = "remove">
-    <BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
-</div>
-
-<BR>Move from column    <select id="from_col">
-                            <option value="0">1</option>
-                            <option value="1">2</option>
-                            <option value="2">3</option>
-                            <option value="3">4</option>
-                        </select>
-to                      <select id="to_col">
-                            <option value="0">1</option>
-                            <option value="1">2</option>
-                            <option value="2">3</option>
-                            <option value="3">4</option>
-                        </select> <button id="moveButton">Move</button>
+<BR>
 
 <!--<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>-->
 
 <table class = "center">
     <tr class="title">
-        <td>Col 1</td>
-        <td >Col 2</td>
-        <td >Col 3</td>
-        <td >Col 4</td>
+        <td>Dealer</td>
+        <td >Player</td>
+        <td >Split</td>
     </tr>
 
     <tr><td class="columnOfCards" id="c0">
@@ -89,24 +77,7 @@ to                      <select id="to_col">
                 <tr><td class="cardLocation l13"></td></tr>
             </table>
         </td>
-        <td class="columnOfCards" id="c3">
-            <table>
-                <tr><td class="cardLocation l0"></td></tr>
-                <tr><td class="cardLocation l1"></td></tr>
-                <tr><td class="cardLocation l2"></td></tr>
-                <tr><td class="cardLocation l3"></td></tr>
-                <tr><td class="cardLocation l4"></td></tr>
-                <tr><td class="cardLocation l5"></td></tr>
-                <tr><td class="cardLocation l6"></td></tr>
-                <tr><td class="cardLocation l7"></td></tr>
-                <tr><td class="cardLocation l8"></td></tr>
-                <tr><td class="cardLocation l9"></td></tr>
-                <tr><td class="cardLocation l10"></td></tr>
-                <tr><td class="cardLocation l11"></td></tr>
-                <tr><td class="cardLocation l12"></td></tr>
-                <tr><td class="cardLocation l13"></td></tr>
-            </table>
-        </td>
+
     </tr>
 </table>
 
