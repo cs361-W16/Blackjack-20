@@ -53,6 +53,7 @@ public class Game {
         if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
             this.move(1,2); //moves one of the cards over to the new stack
             //TODO BETTING FUNCTION GOES HERE
+        this.p.isSplit = true;
     }
 
     public void buildDeck() {
@@ -85,8 +86,13 @@ public class Game {
         deck.remove(deck.size()-1);
         if(i == 0)
             this.dealerScore = this.getColScore(0);
-        else
-            this.p.score = this.getColScore(i);
+        else if (i == 1)
+            this.p.score = this.getColScore(1);
+        else {
+            if (this.p.isSplit == true) {
+                this.p.score = this.getColScore(2);
+            }
+        }
     }
     public void dealHands() {
         hit(0);
