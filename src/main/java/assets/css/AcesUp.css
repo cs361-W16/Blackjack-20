@@ -2,13 +2,6 @@ body{
 background-image:url("../../assets/background.jpg");
 }
 
-.centered {
-width: 400px;
-height: 270px;
-margin-left: auto;
-margin-right: auto;
-}
-
 table.center{
 margin-left:auto;
 margin-right:auto;

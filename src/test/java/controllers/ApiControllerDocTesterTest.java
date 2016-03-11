@@ -31,25 +31,25 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     String URL_INDEX = "/";
     String URL_ACES_UP = "/AcesUp";
     
-    @Test
-    public void testGetIndex() {
+//    @Test
+//    public void testGetIndex() {
+//
+//        Response response = makeRequest(
+//                Request.GET().url(
+//                        testServerUrl().path(URL_INDEX)));
+//
+//        assertThat(response.payload, containsString("Hello World!"));
+//        assertThat(response.payload, containsString("BAM!"));
+//    }
 
-        Response response = makeRequest(
-                Request.GET().url(
-                        testServerUrl().path(URL_INDEX)));
-
-        assertThat(response.payload, containsString("Hello World!"));
-        assertThat(response.payload, containsString("BAM!"));
-    }
-
-    @Test
-    public void testAcesUp() {
-        Response response = makeRequest(
-                Request.GET().url(
-                        testServerUrl().path(URL_ACES_UP)));
-
-        assertThat(response.payload, containsString("Aces Up"));
-        assertThat(response.payload, containsString("columnOfCards"));
-    }
+//    @Test
+//    public void testAcesUp() {
+//        Response response = makeRequest(
+//                Request.GET().url(
+//                        testServerUrl().path(URL_ACES_UP)));
+//
+//        assertThat(response.payload, containsString("Aces Up"));
+//        assertThat(response.payload, containsString("columnOfCards"));
+//    }
 
 }

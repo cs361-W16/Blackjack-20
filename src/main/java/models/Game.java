@@ -7,34 +7,55 @@ import java.util.Random;
 /*
  * Created by michaelhilton on 1/25/16.
  */
-public abstract class Game {
+public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
-    public Game(){
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
+    public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
+        cols.add(new ArrayList<Card>()); //0
+        cols.add(new ArrayList<Card>()); //1
+        cols.add(new ArrayList<Card>()); //2
         this.buildDeck();
     }
 
+    public void split(){
+        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
+            this.move(1,2); //moves one of the cards over to the new stack
+            //TODO BETTING FUNCTION GOES HERE
+    }
 
-    public abstract void buildDeck();
-
+    public void buildDeck() {
+        for(int i = 2; i < 15; i++){
+            deck.add(new Card(i,Suit.Clubs));
+            deck.add(new Card(i,Suit.Hearts));
+            deck.add(new Card(i,Suit.Diamonds));
+            deck.add(new Card(i,Suit.Spades));
+        }
+    }
 
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(deck, new Random(seed));
     }
+    public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
+        cols.get(i).add(deck.get(deck.size()-1));
+        deck.remove(deck.size()-1);
+    }
+    public void dealHands() {
+        hit(0);
+        hit(0);
+        hit(1);
+        hit(1);
+    }
 
-    public void dealFour() {
-        for(int i = 0; i < 4; i++){
-            cols.get(i).add(deck.get(deck.size()-1));
-            deck.remove(deck.size()-1);
-        }
+    public void doubleDown(int i){
+        Player p = new Player();
+        p.bet(10); // 10 is hardcoded, ideally bet should be acquired from player
+        p.bet(10);
+        hit(i);
+        //stay();
     }
 
     //customDeal to setup game for testing purposes
@@ -72,10 +93,7 @@ public abstract class Game {
     }
 
     private boolean colHasCards(int colNumber) {
-        if(this.cols.get(colNumber).size()>0){
-            return true;
-        }
-        return false;
+        return this.cols.get(colNumber).size() > 0;
     }
 
     private Card getTopCard(int columnNumber) {
@@ -86,7 +104,7 @@ public abstract class Game {
     }
 
     public void move(int colFrom, int colTo) {
-        if (colHasCards(colTo) == false)
+        if (!colHasCards(colTo))
         {
             Card cardToMove = getTopCard(colFrom);
             this.removeCardFromCol(colFrom);
