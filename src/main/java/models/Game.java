@@ -50,9 +50,10 @@ public class Game {
         return total;
     }
     public void split(){
-        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
-            this.move(1,2); //moves one of the cards over to the new stack
+        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()) {//if card 1 value == card 2
+            this.move(1, 2); //moves one of the cards over to the new stack
             //TODO BETTING FUNCTION GOES HERE
+        }
         this.p.isSplit = true;
     }
 
@@ -65,7 +66,6 @@ public class Game {
         }
     }
 
-
     public void newGame(){
         this.cols.clear();
         this.p.score= 0;
@@ -74,7 +74,7 @@ public class Game {
         this.deck.clear();
         this.buildDeck();
         this.dealersTurn = "f";
-        this.isSplit = false;
+        this.p.isSplit = false;
     }
 
     public void shuffle() {
@@ -82,18 +82,16 @@ public class Game {
         Collections.shuffle(deck, new Random(seed));
     }
     public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
+        if (i == 2 && this.p.isSplit == false)
+            return;
         cols.get(i).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
         if(i == 0)
             this.dealerScore = this.getColScore(0);
-        else if (i == 1)
-            this.p.score = this.getColScore(1);
-        else {
-            if (this.p.isSplit == true) {
-                this.p.score = this.getColScore(2);
-            }
-        }
+        else
+            this.p.score = this.getColScore(i);
     }
+
     public void dealHands() {
         hit(0);
         hit(0);

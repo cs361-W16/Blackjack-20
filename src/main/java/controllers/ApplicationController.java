@@ -46,6 +46,11 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
+    public Result newGame(Context context, Game g) {
+        g.newGame();
+        return Results.json().render(g);
+    }
+
     public Result split(Context context, Game g) {
         if(context.getRequestPath().contains("split")){
             g.split();
