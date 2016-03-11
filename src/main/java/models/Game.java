@@ -15,6 +15,7 @@ public class Game {
     public String dealersTurn;
     public Player p;
     public int dealerScore;
+    public int splitScore;
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
@@ -24,6 +25,7 @@ public class Game {
         dealersTurn = "f";
         p = new Player();
         dealerScore = 0;
+        splitScore = 0;
     }
    public int getColScore(int columnNumber)
     {
@@ -60,6 +62,16 @@ public class Game {
             deck.add(new Card(i,Suit.Diamonds));
             deck.add(new Card(i,Suit.Spades));
         }
+    }
+
+
+    public void newGame(){
+        this.cols.clear();
+        this.p.score= 0;
+        this.dealerScore = 0;
+        this.splitScore = 0;
+        this.deck.clear();
+
     }
 
     public void shuffle() {
