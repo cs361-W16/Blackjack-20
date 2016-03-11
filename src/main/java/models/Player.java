@@ -34,6 +34,7 @@ public class Player
         int dealScore = g.getColScore(0);
         while(dealScore <= 16) { //dealer keeps hitting
             g.hit(0);
+            dealScore = g.getColScore(0);
         }
         return;
         }
