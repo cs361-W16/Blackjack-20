@@ -65,7 +65,6 @@ public class Game {
         }
     }
 
-
     public void newGame(){
         this.cols.clear();
         this.p.score= 0;
@@ -74,7 +73,7 @@ public class Game {
         this.deck.clear();
         this.buildDeck();
         this.dealersTurn = "f";
-        this.isSplit = false;
+        this.p.isSplit = false;
     }
 
     public void shuffle() {
