@@ -54,7 +54,10 @@ public class Game {
     public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
         cols.get(i).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
-
+        if(i == 0)
+            this.dealerScore = this.getColScore(0);
+        else
+            this.p.score = this.getColScore(i);
     }
     public void dealHands() {
         hit(0);
