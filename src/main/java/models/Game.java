@@ -13,6 +13,7 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     public String dealersTurn;
+    public Player p;
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
@@ -20,6 +21,7 @@ public class Game {
         cols.add(new ArrayList<Card>()); //2
         this.buildDeck();
         dealersTurn = "f";
+        p = new Player();
     }
 
     public void buildDeck() {
@@ -48,10 +50,10 @@ public class Game {
     }
 
     public void doubleDown(int i){
-        Player p = new Player();
-        p.bet(10); // 10 is hardcoded, ideally bet should be acquired from player
-        p.bet(10);
-        hit(i);
+
+        this.p.bet(10); // 10 is hardcoded, ideally bet should be acquired from player
+        this.p.bet(10);
+        this.hit(i);
         //stay();
     }
 
