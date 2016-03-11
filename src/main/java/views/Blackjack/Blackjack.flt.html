@@ -800,7 +800,7 @@ game = data;
 $("#hit1").click(function(){
 $.ajax({
   type: "POST",
-  url: "/hit/"+1,
+  url: "/hit1",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -813,7 +813,7 @@ $.ajax({
 $("#hit2").click(function(){
 $.ajax({
   type: "POST",
-  url: "/hit/"+2,
+  url: "/hit2",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;

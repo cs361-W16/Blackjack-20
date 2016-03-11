@@ -18,6 +18,7 @@ package controllers;
 
 import models.Card;
 import models.Game;
+import models.Player;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -46,14 +47,30 @@ public class ApplicationController {
     }
 
     public Result split(Context context, Game g) {
-        g.split();
+        if(context.getRequestPath().contains("split")){
+            g.split();
+        }
         return Results.json().render(g);
     }
 
-    public Result hit(Context context, @PathParam("column") int i, Game g) {
+    public Result stay(Context context, Game g) {
+        if(context.getRequestPath().contains("stay")){
+            g.p.stay(g);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result hit11(Context context, Game g) {
 
         if (context.getRequestPath().contains("hit")) {
-            g.hit(i);
+            g.hit(1);
+        }
+        return Results.json().render(g);
+    }
+    public Result hit22(Context context, Game g) {
+
+        if (context.getRequestPath().contains("hit")) {
+            g.hit(2);
         }
         return Results.json().render(g);
     }
