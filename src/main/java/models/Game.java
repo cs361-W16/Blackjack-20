@@ -28,8 +28,23 @@ public class Game {
    public int getColScore(int columnNumber)
     {
         int total = 0;
-        for(int i = 0; i < this.cols.get(columnNumber).size(); i++)
-            total += this.cols.get(columnNumber).get(i).getValue();
+        boolean ace = false;
+        for(int i = 0; i < this.cols.get(columnNumber).size(); i++) {
+            if (this.cols.get(columnNumber).get(i).getValue() == 14) {
+                ace = true;
+                total += 11;
+            } else {
+                if (this.cols.get(columnNumber).get(i).getValue() == 11 || this.cols.get(columnNumber).get(i).getValue() == 12 || this.cols.get(columnNumber).get(i).getValue() == 13) {
+                    total += 10;
+                } else {
+                    total += this.cols.get(columnNumber).get(i).getValue();
+                }
+            }
+            if(total > 21){
+                total -= 11;
+                total++;
+            }
+        }
         return total;
     }
     public void split(){
@@ -54,7 +69,10 @@ public class Game {
     public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
         cols.get(i).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
-
+        if(i == 0)
+            this.dealerScore = this.getColScore(0);
+        else
+            this.p.score = this.getColScore(i);
     }
     public void dealHands() {
         hit(0);
