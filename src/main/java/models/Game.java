@@ -72,6 +72,8 @@ public class Game {
         this.splitScore = 0;
         this.deck.clear();
         this.buildDeck();
+        this.dealersTurn = "f";
+        this.isSplit = false;
     }
 
     public void shuffle() {
