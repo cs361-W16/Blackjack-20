@@ -6,8 +6,8 @@
 <body>
 
 
-<button id = "hit1Button"type="button">Hit Col 1</button>
-<button id = "hit2Button"type="button">Hit Col 2</button>
+<button id = "hit1"type="button">Hit Col 1</button>
+<button id = "hit2"type="button">Hit Col 2</button>
 
 
 <button id = "stayButton"type="button">Stay</button>
@@ -797,10 +797,23 @@ game = data;
 });
 
 
-$("#dealButton").click(function(){
+$("#hit1").click(function(){
 $.ajax({
   type: "POST",
-  url: "/dealGame",
+  url: "/hit/"+1,
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#hit2").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/hit/"+2,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
