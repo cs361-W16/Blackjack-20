@@ -25,22 +25,26 @@ import controllers.ApplicationController;
 public class Routes implements ApplicationRoutes {
 
     @Override
-    public void init(Router router) {  
-        
+    public void init(Router router) {
+
         router.GET().route("/").with(ApplicationController.class, "index");
         router.GET().route("/Blackjack").with(ApplicationController.class, "Blackjack");
         router.GET().route("/game").with(ApplicationController.class, "gameGet");
-        router.POST().route("/hit/{column}").with(ApplicationController.class, "hit"); //hope this works like I want it to
+        router.POST().route("/hit1").with(ApplicationController.class, "hit11"); //hope this works like I want it to
+        router.POST().route("/hit2").with(ApplicationController.class, "hit22"); //hope this works like I want it to
         router.POST().route("/moveCard/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCard");
         router.POST().route("/removeCard/{column}").with(ApplicationController.class, "removeCard");
-        router.POST().route("/split").with(ApplicationController.class, "removeCard");
+        router.POST().route("/split").with(ApplicationController.class, "split");
+        router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
+        router.POST().route("/stay").with(ApplicationController.class, "stay");
+
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    
         router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
         router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
-        
+
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page
         ///////////////////////////////////////////////////////////////////////

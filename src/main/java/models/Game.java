@@ -12,18 +12,48 @@ public class Game {
     public java.util.List<Card> deck = new ArrayList<>();
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    public String dealersTurn;
+    public Player p;
+    public int dealerScore;
+    public int splitScore;
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
         cols.add(new ArrayList<Card>()); //1
         cols.add(new ArrayList<Card>()); //2
         this.buildDeck();
+        dealersTurn = "f";
+        p = new Player();
+        dealerScore = 0;
+        splitScore = 0;
     }
-
+   public int getColScore(int columnNumber)
+    {
+        int total = 0;
+        boolean ace = false;
+        for(int i = 0; i < this.cols.get(columnNumber).size(); i++) {
+            if (this.cols.get(columnNumber).get(i).getValue() == 14) {
+                ace = true;
+                total += 11;
+            } else {
+                if (this.cols.get(columnNumber).get(i).getValue() == 11 || this.cols.get(columnNumber).get(i).getValue() == 12 || this.cols.get(columnNumber).get(i).getValue() == 13) {
+                    total += 10;
+                } else {
+                    total += this.cols.get(columnNumber).get(i).getValue();
+                }
+            }
+            if(total > 21){
+                total -= 11;
+                total++;
+            }
+        }
+        return total;
+    }
     public void split(){
         if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
             this.move(1,2); //moves one of the cards over to the new stack
             //TODO BETTING FUNCTION GOES HERE
+        this.p.isSplit = true;
     }
 
     public void buildDeck() {
@@ -35,6 +65,18 @@ public class Game {
         }
     }
 
+
+    public void newGame(){
+        this.cols.clear();
+        this.p.score= 0;
+        this.dealerScore = 0;
+        this.splitScore = 0;
+        this.deck.clear();
+        this.buildDeck();
+        this.dealersTurn = "f";
+        this.isSplit = false;
+    }
+
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(deck, new Random(seed));
@@ -42,12 +84,28 @@ public class Game {
     public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
         cols.get(i).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
+        if(i == 0)
+            this.dealerScore = this.getColScore(0);
+        else if (i == 1)
+            this.p.score = this.getColScore(1);
+        else {
+            if (this.p.isSplit == true) {
+                this.p.score = this.getColScore(2);
+            }
+        }
     }
     public void dealHands() {
         hit(0);
         hit(0);
         hit(1);
         hit(1);
+     }
+
+    public void doubleDown(int i){
+
+        p.bet();
+        hit(i);
+        //stay();
     }
 
     //customDeal to setup game for testing purposes
