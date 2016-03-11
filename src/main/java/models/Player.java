@@ -28,4 +28,7 @@ public class Player
         }
     }
 
+    public void stay(Game g){
+
+    }
 }
