@@ -4,13 +4,11 @@
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
 <body>
-<div id ="topright">
-    <button id="dealButton"><img src="../../assets/cardback.png" width="160" height="244" border="0" alt="javascript button"></button>
-</div>
-<<<<<<< HEAD
+
+
 <button id = "hit1Button"type="button">Hit Col 1</button>
 <button id = "hit2Button"type="button">Hit Col 2</button>
-=======
+
 
 <button id = "stayButton"type="button">Stay</button>
 <button id = "splitButton"type="button">Split</button>
@@ -26,6 +24,9 @@
         <td >Player</td>
         <td >Split</td>
     </tr>
+
+
+
 
     <tr><td class="columnOfCards" id="c0">
         <table>
@@ -91,13 +92,15 @@ var game;
 
 function display(game) {
 console.log(game);
-
 $( '.columnOfCards .cardLocation' ).attr("background","");
 
     $.each(game.cols[0], function( key, val ) {
+
+
     if(val.value==2&& val.suit =="Clubs"){
         $( '#c0 .l'+key ).attr("background","assets/images/2_of_clubs.png");
         }
+
     if(val.value==3&& val.suit =="Clubs"){
         $( '#c0 .l'+key ).attr("background","assets/images/3_of_clubs.png");
         }
@@ -221,8 +224,7 @@ $( '.columnOfCards .cardLocation' ).attr("background","");
         $( '#c0 .l'+key ).attr("background","assets/images/ace_of_hearts.png");
         }
 
-
-         if(val.value==2&& val.suit =="Diamonds"){
+        if(val.value==2&& val.suit =="Diamonds"){
         $( '#c0 .l'+key ).attr("background","assets/images/2_of_diamonds.png");
         }
     if(val.value==3&& val.suit =="Diamonds"){
@@ -262,7 +264,10 @@ $( '.columnOfCards .cardLocation' ).attr("background","");
         if(val.value==14&& val.suit =="Diamonds"){
         $( '#c0 .l'+key ).attr("background","assets/images/ace_of_diamonds.png");
         }
-
+        if(key == 0 && game.dealersTurn == "f"){
+        $( '#c0 .l'+key ).attr("background","assets/cardback.png");
+    }
+console.log(game.dealersTurn);
 
 
 
