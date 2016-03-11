@@ -104,7 +104,9 @@ var game;
 function display(game) {
 console.log(game);
 $('#playerscore').html(game.p.score);
+if(game.dealersTurn == "t"){
 $('#dealerscore').html(game.dealerScore);
+}
 $( '.columnOfCards .cardLocation' ).attr("background","");
 
     $.each(game.cols[0], function( key, val ) {
@@ -822,6 +824,7 @@ $.ajax({
   dataType:"json",
 });
 });
+
 
 $("#hit2").click(function(){
 $.ajax({

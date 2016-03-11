@@ -28,8 +28,23 @@ public class Game {
    public int getColScore(int columnNumber)
     {
         int total = 0;
-        for(int i = 0; i < this.cols.get(columnNumber).size(); i++)
-            total += this.cols.get(columnNumber).get(i).getValue();
+        boolean ace = false;
+        for(int i = 0; i < this.cols.get(columnNumber).size(); i++) {
+            if (this.cols.get(columnNumber).get(i).getValue() == 14) {
+                ace = true;
+                total += 11;
+            } else {
+                if (this.cols.get(columnNumber).get(i).getValue() == 11 || this.cols.get(columnNumber).get(i).getValue() == 12 || this.cols.get(columnNumber).get(i).getValue() == 13) {
+                    total += 10;
+                } else {
+                    total += this.cols.get(columnNumber).get(i).getValue();
+                }
+            }
+            if(total > 21){
+                total -= 11;
+                total++;
+            }
+        }
         return total;
     }
     public void split(){
