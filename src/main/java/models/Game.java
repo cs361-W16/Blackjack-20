@@ -50,9 +50,10 @@ public class Game {
         return total;
     }
     public void split(){
-        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()); //if card 1 value == card 2
-            this.move(1,2); //moves one of the cards over to the new stack
+        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()) {//if card 1 value == card 2
+            this.move(1, 2); //moves one of the cards over to the new stack
             //TODO BETTING FUNCTION GOES HERE
+        }
         this.p.isSplit = true;
     }
 
