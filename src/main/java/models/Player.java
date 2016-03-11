@@ -37,5 +37,6 @@ public class Player
             dealScore = g.getColScore(0);
         }
         return;
+        //TODO NEEDS LEYGIT GAME SCORING AND ENDING
         }
 }
