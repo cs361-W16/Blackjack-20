@@ -74,6 +74,7 @@ public class Game {
         this.buildDeck();
         this.dealersTurn = "f";
         this.p.isSplit = false;
+        this.dealHands();
     }
 
     public void shuffle() {
