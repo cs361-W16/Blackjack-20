@@ -29,7 +29,7 @@ public class Player
     public void doubleDown(int i, Game g){
         bet();
         g.hit(i); //TODO ACTUALLY IMPLEMENT THIS I THINK IT"S WRONG ALSO CHECK TO MAKE SURE YOU CAN DO IT
-        //stay();
+        stay(g);
     }
 
     public void bet()
