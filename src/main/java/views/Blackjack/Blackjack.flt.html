@@ -11,7 +11,7 @@
 <button id = "stay"type="button">Stay</button>
 <button id = "split"type="button">Split</button>
 <button id = "doubleDown"type="button">Double Down</button>
-<button id = "newgame"type="button">New Game</button>
+<button id = "newgame"type="button">New Hand</button>
 <BR>
 
 <!--<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>-->
@@ -31,6 +31,10 @@
     <tr class="isBet">
         <td>Bet Amount: </td>
         <td id="isBet"></td>
+    </tr>
+    <tr class="winningCondition">
+        <td></td>
+        <td id="winningCondition"></td>
     </tr>
 </table>
 
@@ -110,10 +114,31 @@ function display(game) {
 console.log(game);
 $('#playerscore').html(game.p.score);
 $('#money').html(game.p.money);
-$('#isBet').html(game.p.isBet);
+$('#isBet').html(game.p.betAmount);
+
+if(game.bust == "t"){
+    $('#winningCondition').html(game.busted);
+}else{
+    if(game.won == "t"){
+    $('#winningCondition').html(game.win);
+    }else{
+        if(game.tie =="t"){
+            $('#winningCondition').html(game.tied);
+        }else{
+              $('#winningCondition').html(game.blank);
+
+}
+
+
+}
+
+
+}
 
 if(game.dealersTurn == "t"){
-$('#dealerscore').html(game.dealerScore);
+    $('#dealerscore').html(game.dealerScore);
+}else{
+    $('#dealerscore').html(game.blank);
 }
 
 $( '.columnOfCards .cardLocation' ).attr("background","");
