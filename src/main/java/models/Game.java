@@ -15,14 +15,11 @@ public class Game {
     public Player p;
     public int dealerScore;
     public int splitScore;
-    public String bust;
     public String busted = "You busted! Please hit the New Hand button to start a new hand!";
     public String win = "You won! Please hit New Hand to start a new hand!";
     public String tied = "You tied with the dealer! Please hit the New Hand button to start a new hand!";
-    public String won;
+    public String winState = "p"; //p for still playing, w for win, l for loss, t for tie, b for bust
     public String blank="";
-    public String tie;
-    public String lost;
     public String youLost = "You lost! Please hit the New Hand button to start a new hand!";
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
@@ -31,9 +28,6 @@ public class Game {
         cols.add(new ArrayList<Card>()); //2
         p = new Player();
         dealersTurn = "f";
-        bust = "f";
-        won = "f";
-        tie = "f";
     }
    public int getColScore(int columnNumber)
     {
@@ -79,14 +73,8 @@ public class Game {
         this.buildDeck();
         this.shuffle();
         this.dealHands();
-        this.won = "f";
-        this.bust = "f";
-        this.tie = "f";
-        this.lost = "f";
-
-
+        this.winState = "p";
         this.splitScore = 0;
-
         this.p.isSplit = false;
     }
 
@@ -106,7 +94,7 @@ public class Game {
 
         if(this.p.score > 21){
             this.p.money-= this.p.betAmount;
-            this.bust = "t";
+            this.winState = "b";
         }
 
     }
@@ -182,9 +170,6 @@ public class Game {
 
     private void removeCardFromCol(int colFrom) {
         this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
-
-        //I think that should conflict...
-        //Did it work yet?
 
     }
 }

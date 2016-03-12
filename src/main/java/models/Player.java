@@ -52,20 +52,19 @@ public class Player
             dealScore = g.getColScore(0);
         }
         if(dealScore > 21){
-            g.won="t";
+            g.winState="w";
             g.p.money += g.p.betAmount;
         }
-
         if(dealScore<g.p.score){
-                g.won="t";
+                g.winState="w";
                 g.p.money += g.p.betAmount;
         }
         if(dealScore>g.p.score && dealScore<=21){
-            g.lost = "t";
+            g.winState = "l";
             g.p.money -= g.p.betAmount;
         }
         if(dealScore == g.p.score){
-            g.tie = "t";
+            g.winState = "t";
         }
 
         return;
