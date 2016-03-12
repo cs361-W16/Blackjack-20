@@ -19,13 +19,13 @@ public class testPlayer {
 
         //If player has enough money
         //testBetAmount = 2;
-        p.bet();
+        p.bet(1);
         assert(p.money == (p.money - p.betAmount));
         assert(p.isBet == (p.isBet + p.betAmount));
 
         //If player doesn't have enough money
         p.money = 1;
-        p.bet();
+        p.bet(1);
         assert(System.out.equals("Not enough money"));
     }
 
