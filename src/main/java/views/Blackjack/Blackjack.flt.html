@@ -25,6 +25,10 @@
         <td>Player Score: </td>
         <td id="playerscore"></td>
     </tr>
+    <tr class="Splayerscore">
+        <td>Split Hand Player Score: </td>
+        <td id="Splayerscore"></td>
+    </tr>
     <tr class="money">
         <td>Money: </td>
         <td id="money"></td>
@@ -36,6 +40,10 @@
     <tr class="winningCondition">
         <td></td>
         <td id="winningCondition"></td>
+    </tr>
+    <tr class="SwinningCondition">
+        <td></td>
+        <td id="SwinningCondition"></td>
     </tr>
 </table>
 
@@ -114,6 +122,7 @@ var game;
 function display(game) {
 console.log(game);
 $('#playerscore').html(game.p.score);
+$('#Splayerscore').html(game.p.splitScore);
 $('#money').html(game.p.money);
 $('#isBet').html(game.p.betAmount);
 
@@ -123,7 +132,7 @@ if(game.winState == "b"){
     if(game.winState == "w"){
     $('#winningCondition').html(game.win);
     }else{
-        if(game.winState =="t"){
+        if(game.winState == "t"){
             $('#winningCondition').html(game.tied);
         }else{
             if(game.winState == "l"){
@@ -131,6 +140,27 @@ if(game.winState == "b"){
 
             }else{
               $('#winningCondition').html(game.blank);
+              }
+        }
+
+
+    }
+}
+
+if(game.SwinState == "b"){
+    $('#SwinningCondition').html(game.split + game.busted);
+}else{
+    if(game.SwinState == "w"){
+    $('#SwinningCondition').html(game.split + game.win);
+    }else{
+        if(game.SwinState == "t"){
+            $('#SwinningCondition').html(game.split + game.tied);
+        }else{
+            if(game.SwinState == "l"){
+              $('#SwinningCondition').html(game.split + game.youLost);
+
+            }else{
+              $('#SwinningCondition').html(game.blank);
               }
         }
 

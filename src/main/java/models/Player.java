@@ -4,10 +4,10 @@ package models;
 public class Player
 {
     public int score;
+    public int splitScore;
     public int money;
     public int betAmount;
     public int isBet;
-    public boolean isSplit;
 
     public Player()
     {
@@ -15,13 +15,12 @@ public class Player
         money = 10;
         isBet = 0; //amount player bets
         betAmount = 2;
-        isSplit = false;
     }
 
     public void split(Game g){
-        if(g.cols.get(1).get(0).getValue() == g.cols.get(1).get(1).getValue()) {//if card 1 value == card 2
+        if((g.cols.get(1).get(0).getValue() == g.cols.get(1).get(1).getValue()) && (g.cols.get(1).size() == 2)) {//if card 1 value == card 2 and you only have 2 cards
             g.move(1, 2); //moves one of the cards over to the new stack
-            this.isSplit = true;
+            g.SwinState = "p";
             //TODO BETTING FUNCTION GOES HERE
         }
     }
@@ -66,7 +65,23 @@ public class Player
         if(dealScore == g.p.score){
             g.winState = "t";
         }
-
+        if(g.SwinState == "p") {
+            if (dealScore > 21) {
+                g.SwinState="w";
+                g.p.money += g.p.betAmount;
+            }
+            if(dealScore<g.p.splitScore){
+                g.SwinState="w";
+                g.p.money += g.p.betAmount;
+            }
+            if(dealScore>g.p.splitScore && dealScore<=21){
+                g.SwinState = "l";
+                g.p.money -= g.p.betAmount;
+            }
+            if(dealScore == g.p.score){
+                g.SwinState = "t";
+            }
+        }
         return;
         //TODO NEEDS LEYGIT GAME SCORING AND ENDING
         }
