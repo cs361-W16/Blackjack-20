@@ -22,6 +22,8 @@ public class Game {
     public String won;
     public String blank="";
     public String tie;
+    public String lost;
+    public String youLost = "You lost! Please hit the New Hand button to start a new hand!";
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
@@ -48,7 +50,7 @@ public class Game {
                     total += this.cols.get(columnNumber).get(i).getValue();
                 }
             }
-            while(total > 21 && ace>1){
+            while(total > 21 && ace>=1){
                 total -= 11;
                 total++;
                 ace --;
@@ -87,6 +89,7 @@ public class Game {
         this.won = "f";
         this.bust = "f";
         this.tie = "f";
+        this.lost = "f";
 
 
         this.splitScore = 0;

@@ -62,11 +62,11 @@ public class Player
                 g.p.money += g.p.betAmount;
         }
         if(dealScore>g.p.score && dealScore<=21){
-            g.won = "f";
+            g.lost = "t";
             g.p.money -= g.p.betAmount;
         }
         if(dealScore == g.p.score){
-
+            g.tie = "t";
         }
 
         return;

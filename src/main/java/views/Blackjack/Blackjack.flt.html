@@ -125,12 +125,16 @@ if(game.bust == "t"){
         if(game.tie =="t"){
             $('#winningCondition').html(game.tied);
         }else{
+            if(game.lost == "t"){
+              $('#winningCondition').html(game.youLost);
+
+            }else{
               $('#winningCondition').html(game.blank);
+              }
+        }
 
-}
 
-
-}
+    }
 
 
 }
