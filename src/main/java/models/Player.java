@@ -13,7 +13,7 @@ public class Player
     public Player()
     {
         score = 0;
-        money = 10;
+        money = 100;
         isBet = 0; //amount player bets
         SisBet = 0;
         betAmount = 2;
@@ -62,36 +62,44 @@ public class Player
             g.hit(0);
             dealScore = g.getColScore(0);
         }
-        if(dealScore > 21){
-            g.winState="w";
-            g.p.money += g.p.isBet;
-        }
-        if(dealScore<g.p.score){
-                g.winState="w";
-                g.p.money += g.p.isBet;
-        }
-        if(dealScore>g.p.score && dealScore<=21){
-            g.winState = "l";
+
+        if(g.p.score > 21){
+            g.winState="l";
             g.p.money -= g.p.isBet;
         }
-        if(dealScore == g.p.score){
-            g.winState = "t";
-        }
-        if(g.SwinState == "p") {
+        else {
+
             if (dealScore > 21) {
-                g.SwinState="w";
-                g.p.money += g.p.SisBet;
+                g.winState = "w";
+                g.p.money += g.p.isBet;
             }
-            if(dealScore<g.p.splitScore){
-                g.SwinState="w";
-                g.p.money += g.p.SisBet;
+            if (dealScore < g.p.score && g.p.score <= 21) {
+                g.winState = "w";
+                g.p.money += g.p.isBet;
             }
-            if(dealScore>g.p.splitScore && dealScore<=21){
-                g.SwinState = "l";
-                g.p.money -= g.p.SisBet;
+            if (dealScore > g.p.score && dealScore <= 21) {
+                g.winState = "l";
+                g.p.money -= g.p.isBet;
             }
-            if(dealScore == g.p.score){
-                g.SwinState = "t";
+            if (dealScore == g.p.score) {
+                g.winState = "t";
+            }
+            if (g.SwinState == "p") {
+                if (dealScore > 21) {
+                    g.SwinState = "w";
+                    g.p.money += g.p.SisBet;
+                }
+                if (dealScore < g.p.splitScore) {
+                    g.SwinState = "w";
+                    g.p.money += g.p.SisBet;
+                }
+                if (dealScore > g.p.splitScore && dealScore <= 21) {
+                    g.SwinState = "l";
+                    g.p.money -= g.p.SisBet;
+                }
+                if (dealScore == g.p.score) {
+                    g.SwinState = "t";
+                }
             }
         }
         return;
