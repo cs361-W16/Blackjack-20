@@ -14,20 +14,20 @@ public class Game {
     public String dealersTurn;
     public Player p;
     public int dealerScore;
-    public int splitScore;
     public String busted = "You busted! Please hit the New Hand button to start a new hand!";
     public String win = "You won! Please hit New Hand to start a new hand!";
     public String tied = "You tied with the dealer! Please hit the New Hand button to start a new hand!";
     public String winState = "p"; //p for still playing, w for win, l for loss, t for tie, b for bust
+    public String SwinState = "d"; //d for dead/not active, p for playing, w for win, l for loss, t for tie, b for bust for the split col
     public String blank="";
     public String youLost = "You lost! Please hit the New Hand button to start a new hand!";
+    public String split = "On your split hand, ";
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
         cols.add(new ArrayList<Card>()); //1
         cols.add(new ArrayList<Card>()); //2
         p = new Player();
-        dealersTurn = "f";
     }
    public int getColScore(int columnNumber)
     {
@@ -47,7 +47,7 @@ public class Game {
             while(total > 21 && ace>=1){
                 total -= 11;
                 total++;
-                ace --;
+                ace--;
             }
         }
         return total;
@@ -74,8 +74,8 @@ public class Game {
         this.shuffle();
         this.dealHands();
         this.winState = "p";
-        this.splitScore = 0;
-        this.p.isSplit = false;
+        this.SwinState = "d";
+        this.p.splitScore = 0;
     }
 
     public void shuffle() {
@@ -83,18 +83,24 @@ public class Game {
         Collections.shuffle(deck, new Random(seed));
     }
     public void hit(int i){ //i is 0 for dealer, 1 for hand 1, 2 for hand 2 if split
-        if (i == 2 && this.p.isSplit == false)
+        if (i == 2 && this.SwinState.equals("d"))
             return;
         cols.get(i).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
         if(i == 0)
             this.dealerScore = this.getColScore(0);
-        else
+        if(i == 1)
             this.p.score = this.getColScore(i);
-
+        if(i == 2)
+            this.p.splitScore = this.getColScore(i);
+        
         if(this.p.score > 21){
             this.p.money-= this.p.betAmount;
             this.winState = "b";
+        }
+        if(this.p.splitScore > 21){
+            this.p.money-= this.p.betAmount;
+            this.SwinState = "b";
         }
 
     }
