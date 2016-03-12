@@ -97,12 +97,12 @@ public class Game {
         if(i == 2)
             this.p.splitScore = this.getColScore(i);
 
-        if((this.p.score > 21) && (this.winState != "b")){
+        if((this.p.score > 21) && !(this.winState.equals("b"))){
             this.p.money-= this.p.isBet;
             this.winState = "b";
         }
-        if((this.p.splitScore > 21) && (this.SwinState != "b")){
-            this.p.money-= this.p.isBet;
+        if((this.p.splitScore > 21) && !(this.SwinState.equals("b"))){
+            this.p.money-= this.p.SisBet;
             this.SwinState = "b";
         }
 
