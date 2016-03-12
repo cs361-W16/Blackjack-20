@@ -46,11 +46,29 @@ public class Player
     }
 
     public void stay(Game g) {
+        g.dealersTurn = "t";
         int dealScore = g.getColScore(0);
         while(dealScore <= 16) { //dealer keeps hitting
             g.hit(0);
             dealScore = g.getColScore(0);
         }
+        if(dealScore > 21){
+            g.won="t";
+            g.p.money += g.p.betAmount;
+        }
+
+        if(dealScore<g.p.score){
+                g.won="t";
+                g.p.money += g.p.betAmount;
+        }
+        if(dealScore>g.p.score && dealScore<=21){
+            g.lost = "t";
+            g.p.money -= g.p.betAmount;
+        }
+        if(dealScore == g.p.score){
+            g.tie = "t";
+        }
+
         return;
         //TODO NEEDS LEYGIT GAME SCORING AND ENDING
         }

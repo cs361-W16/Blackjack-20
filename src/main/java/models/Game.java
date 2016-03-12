@@ -15,12 +15,25 @@ public class Game {
     public Player p;
     public int dealerScore;
     public int splitScore;
+    public String bust;
+    public String busted = "You busted! Please hit the New Hand button to start a new hand!";
+    public String win = "You won! Please hit New Hand to start a new hand!";
+    public String tied = "You tied with the dealer! Please hit the New Hand button to start a new hand!";
+    public String won;
+    public String blank="";
+    public String tie;
+    public String lost;
+    public String youLost = "You lost! Please hit the New Hand button to start a new hand!";
 
     public Game(){ //This needs to be changed first really. 3 columns, 0 for dealer, 1 for hand 1, 2 for hand 2
         cols.add(new ArrayList<Card>()); //0
         cols.add(new ArrayList<Card>()); //1
         cols.add(new ArrayList<Card>()); //2
         p = new Player();
+        dealersTurn = "f";
+        bust = "f";
+        won = "f";
+        tie = "f";
     }
    public int getColScore(int columnNumber)
     {
@@ -37,10 +50,11 @@ public class Game {
                     total += this.cols.get(columnNumber).get(i).getValue();
                 }
             }
-//            if(total > 21 && ace>1){
-//                total -= 11;
-//                total++;
-//            }
+            while(total > 21 && ace>=1){
+                total -= 11;
+                total++;
+                ace --;
+            }
         }
         return total;
     }
@@ -62,17 +76,24 @@ public class Game {
     }
 
     public void newGame(){
+        this.dealersTurn = "f";
         this.cols.get(0).clear();
         this.cols.get(1).clear();
         this.cols.get(2).clear();
         this.deck.clear();
+        this.p.score= 0;
+        this.dealerScore = 0;
         this.buildDeck();
         this.shuffle();
         this.dealHands();
-        this.p.score= 0;
-        this.dealerScore = 0;
+        this.won = "f";
+        this.bust = "f";
+        this.tie = "f";
+        this.lost = "f";
+
+
         this.splitScore = 0;
-        this.dealersTurn = "f";
+
         this.p.isSplit = false;
     }
 
@@ -92,14 +113,7 @@ public class Game {
 
         if(this.p.score > 21){
             this.p.money-= this.p.betAmount;
-            try {
-                Thread.sleep(3000);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            //this.newGame();
-
-
+            this.bust = "t";
         }
 
     }
