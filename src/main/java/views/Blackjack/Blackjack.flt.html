@@ -37,6 +37,10 @@
         <td>Bet Amount: </td>
         <td id="isBet"></td>
     </tr>
+    <tr class="SisBet">
+        <td>Split Bet Amount: </td>
+        <td id="SisBet"></td>
+    </tr>
     <tr class="winningCondition">
         <td></td>
         <td id="winningCondition"></td>
@@ -124,7 +128,8 @@ console.log(game);
 $('#playerscore').html(game.p.score);
 $('#Splayerscore').html(game.p.splitScore);
 $('#money').html(game.p.money);
-$('#isBet').html(game.p.betAmount);
+$('#isBet').html(game.p.isBet);
+$('#SisBet').html(game.p.SisBet);
 
 if(game.winState == "b"){
     $('#winningCondition').html(game.busted);

@@ -8,12 +8,14 @@ public class Player
     public int money;
     public int betAmount;
     public int isBet;
+    public int SisBet;
 
     public Player()
     {
         score = 0;
         money = 10;
         isBet = 0; //amount player bets
+        SisBet = 0;
         betAmount = 2;
     }
 
@@ -21,21 +23,31 @@ public class Player
         if((g.cols.get(1).get(0).getValue() == g.cols.get(1).get(1).getValue()) && (g.cols.get(1).size() == 2)) {//if card 1 value == card 2 and you only have 2 cards
             g.move(1, 2); //moves one of the cards over to the new stack
             g.SwinState = "p";
-            //TODO BETTING FUNCTION GOES HERE
+            bet(2);
+            this.score = g.getColScore(1);
+            this.splitScore = g.getColScore(2);
         }
     }
 
     public void doubleDown(int i, Game g){
-        bet();
+        bet(i);
         g.hit(i); //TODO ACTUALLY IMPLEMENT THIS I THINK IT"S WRONG ALSO CHECK TO MAKE SURE YOU CAN DO IT
         stay(g);
     }
 
-    public void bet()
+    public void bet(int i)
     {
-        if (money >= betAmount) {
-            money = money - betAmount;
-            isBet = isBet + betAmount;
+        if (money >= betAmount)
+        {
+            if(i == 1) {
+                money = money - betAmount;
+                isBet = isBet + betAmount;
+            }
+            if(i == 2)
+            {
+                money = money - betAmount;
+                SisBet = SisBet + betAmount;
+            }
         }
         else
         {
@@ -52,15 +64,15 @@ public class Player
         }
         if(dealScore > 21){
             g.winState="w";
-            g.p.money += g.p.betAmount;
+            g.p.money += g.p.isBet;
         }
         if(dealScore<g.p.score){
                 g.winState="w";
-                g.p.money += g.p.betAmount;
+                g.p.money += g.p.isBet;
         }
         if(dealScore>g.p.score && dealScore<=21){
             g.winState = "l";
-            g.p.money -= g.p.betAmount;
+            g.p.money -= g.p.isBet;
         }
         if(dealScore == g.p.score){
             g.winState = "t";
@@ -68,15 +80,15 @@ public class Player
         if(g.SwinState == "p") {
             if (dealScore > 21) {
                 g.SwinState="w";
-                g.p.money += g.p.betAmount;
+                g.p.money += g.p.SisBet;
             }
             if(dealScore<g.p.splitScore){
                 g.SwinState="w";
-                g.p.money += g.p.betAmount;
+                g.p.money += g.p.SisBet;
             }
             if(dealScore>g.p.splitScore && dealScore<=21){
                 g.SwinState = "l";
-                g.p.money -= g.p.betAmount;
+                g.p.money -= g.p.SisBet;
             }
             if(dealScore == g.p.score){
                 g.SwinState = "t";

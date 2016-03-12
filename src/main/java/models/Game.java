@@ -76,6 +76,9 @@ public class Game {
         this.winState = "p";
         this.SwinState = "d";
         this.p.splitScore = 0;
+        this.p.isBet = 0;
+        this.p.SisBet = 0;
+        this.p.bet(1);
     }
 
     public void shuffle() {
@@ -93,13 +96,13 @@ public class Game {
             this.p.score = this.getColScore(i);
         if(i == 2)
             this.p.splitScore = this.getColScore(i);
-        
-        if(this.p.score > 21){
-            this.p.money-= this.p.betAmount;
+
+        if((this.p.score > 21) && (this.winState != "b")){
+            this.p.money-= this.p.isBet;
             this.winState = "b";
         }
-        if(this.p.splitScore > 21){
-            this.p.money-= this.p.betAmount;
+        if((this.p.splitScore > 21) && (this.SwinState != "b")){
+            this.p.money-= this.p.isBet;
             this.SwinState = "b";
         }
 
