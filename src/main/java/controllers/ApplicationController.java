@@ -40,8 +40,7 @@ public class ApplicationController {
     
     public Result gameGet(){
         Game g = new Game();
-        g.shuffle();
-        g.dealHands();
+        g.newGame();
         return Results.json().render(g);
     }
 
@@ -52,7 +51,7 @@ public class ApplicationController {
 
     public Result split(Context context, Game g) {
         if(context.getRequestPath().contains("split")){
-            g.split();
+            g.p.split(g);
         }
         return Results.json().render(g);
     }
@@ -61,6 +60,16 @@ public class ApplicationController {
         if(context.getRequestPath().contains("stay")){
             g.p.stay(g);
         }
+        return Results.json().render(g);
+    }
+
+    public Result doubleDown1(Context context, Game g) {
+        g.p.doubleDown(1, g);
+        return Results.json().render(g);
+    }
+
+    public Result doubleDown2(Context context, Game g) {
+        g.p.doubleDown(2, g);
         return Results.json().render(g);
     }
 
@@ -75,13 +84,6 @@ public class ApplicationController {
 
         if (context.getRequestPath().contains("hit")) {
             g.hit(2);
-        }
-        return Results.json().render(g);
-    }
-
-    public Result dealPost(Context context, Game g) {
-        if(context.getRequestPath().contains("deal")){
-            g.dealHands();
         }
         return Results.json().render(g);
     }

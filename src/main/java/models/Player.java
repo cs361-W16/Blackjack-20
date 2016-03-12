@@ -24,7 +24,6 @@ public class Player
             this.isSplit = true;
             //TODO BETTING FUNCTION GOES HERE
         }
-
     }
 
     public void doubleDown(int i, Game g){

@@ -70,7 +70,7 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.customDeal(1,2,0,14);
-        g.split();
+        g.p.split(g);
         assert(g.cols.get(1).get(3) == g.cols.get(2).get(0));
     }
 
@@ -97,9 +97,7 @@ public class testGame {
     {
         int i = 1;
         int testBetAmount = 2;
-
-        g.doubleDown(i);
-
+        p.doubleDown(i,g);
         assert(p.money == (p.money - (2*testBetAmount)));
         assert(p.isBet == (p.isBet + testBetAmount));
         assert(g.deck.size() ==(g.deck.size()-1));

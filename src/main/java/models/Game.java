@@ -10,7 +10,6 @@ import java.util.Random;
 public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
-
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     public String dealersTurn;
     public Player p;
@@ -21,11 +20,7 @@ public class Game {
         cols.add(new ArrayList<Card>()); //0
         cols.add(new ArrayList<Card>()); //1
         cols.add(new ArrayList<Card>()); //2
-        this.buildDeck();
-        dealersTurn = "f";
         p = new Player();
-        dealerScore = 0;
-        splitScore = 0;
     }
    public int getColScore(int columnNumber)
     {
@@ -49,13 +44,6 @@ public class Game {
         }
         return total;
     }
-    public void split(){
-        if(this.cols.get(1).get(0).getValue() == this.cols.get(1).get(1).getValue()) {//if card 1 value == card 2
-            this.move(1, 2); //moves one of the cards over to the new stack
-            //TODO BETTING FUNCTION GOES HERE
-        }
-        this.p.isSplit = true;
-    }
 
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
@@ -67,15 +55,18 @@ public class Game {
     }
 
     public void newGame(){
-        this.cols.clear();
+        this.cols.get(0).clear();
+        this.cols.get(1).clear();
+        this.cols.get(2).clear();
+        this.deck.clear();
+        this.buildDeck();
+        this.shuffle();
+        this.dealHands();
         this.p.score= 0;
         this.dealerScore = 0;
         this.splitScore = 0;
-        this.deck.clear();
-        this.buildDeck();
         this.dealersTurn = "f";
         this.p.isSplit = false;
-        this.dealHands();
     }
 
     public void shuffle() {
@@ -112,13 +103,6 @@ public class Game {
         hit(1);
         hit(1);
      }
-
-    public void doubleDown(int i){
-
-        p.bet();
-        hit(i);
-        //stay();
-    }
 
     //customDeal to setup game for testing purposes
     public void customDeal(int c1, int c2, int c3, int c4) {
