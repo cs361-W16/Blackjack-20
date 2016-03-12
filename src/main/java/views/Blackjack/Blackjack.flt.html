@@ -117,16 +117,16 @@ $('#playerscore').html(game.p.score);
 $('#money').html(game.p.money);
 $('#isBet').html(game.p.betAmount);
 
-if(game.bust == "t"){
+if(game.winState == "b"){
     $('#winningCondition').html(game.busted);
 }else{
-    if(game.won == "t"){
+    if(game.winState == "w"){
     $('#winningCondition').html(game.win);
     }else{
-        if(game.tie =="t"){
+        if(game.winState =="t"){
             $('#winningCondition').html(game.tied);
         }else{
-            if(game.lost == "t"){
+            if(game.winState == "l"){
               $('#winningCondition').html(game.youLost);
 
             }else{
