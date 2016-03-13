@@ -62,14 +62,7 @@ public class testGame {
         assert(g.cols.get(2).size() == 0); //should be empty as that split is illegal
     }
 
-    @Test
-    public void testRemoveFunction(){
-        Game g = new Game();
-        g.buildDeck();
-        g.hit(1);
-        g.remove(1);
-        assertEquals(0,g.cols.get(1).size());
-    }
+
     //This needs improvement
     @Test
     public void testHit()
