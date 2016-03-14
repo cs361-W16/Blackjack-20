@@ -98,7 +98,7 @@ public class Player
                     g.SwinState = "l";
                     g.p.money -= g.p.SisBet;
                 }
-                if (dealScore == g.p.score) {
+                if (dealScore == g.p.splitScore) {
                     g.SwinState = "t";
                 }
             }
