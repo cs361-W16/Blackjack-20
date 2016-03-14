@@ -20,8 +20,9 @@ public class testGame {
     @Test
     public void testDeckCount(){
        Game g = new Game();
+        g.buildDeck();
        assertEquals(52,g.deck.size());
-        g.remove(2);
+        g.deck.remove(51);
         assertEquals(51,g.deck.size());
     }
 
@@ -53,34 +54,22 @@ public class testGame {
     }
 
 
-    @Test
-    public void testSplit(){
-        //Game g = new Game();
-        g.buildDeck();
-        g.dealHands();
-        g.p.split(g);
-        assert(g.cols.get(2).size() == 0); //should be empty as that split is illegal
-    }
+
 
 
     //This needs improvement
     @Test
     public void testHit()
     {
+        g.buildDeck();
         int i = 1;
+        int prevSize;
+        prevSize = g.deck.size();
         g.hit(i);
-        assert(g.deck.size() ==(g.deck.size()-1));
+
+        assert(g.deck.size() == (prevSize - 1));
         assert(g.cols.get(i).size() == 1);
     }
 
-    @Test
-    public void testDoubleDown()
-    {
-        int i = 1;
-        int testBetAmount = 2;
-        p.doubleDown(i,g);
-        assert(p.money == (p.money - (2*testBetAmount)));
-        assert(p.isBet == (p.isBet + testBetAmount));
-        assert(g.deck.size() ==(g.deck.size()-1));
-    }
+
 }

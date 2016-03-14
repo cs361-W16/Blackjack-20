@@ -7,6 +7,7 @@ import org.junit.Test;
  */
 public class testPlayer {
 
+    Game g = new Game();
     Player p = new Player();
 
     @Test
@@ -20,14 +21,57 @@ public class testPlayer {
         //If player has enough money
         //testBetAmount = 2;
         p.bet(1);
-        assert(p.money == (p.money - p.betAmount));
-        assert(p.isBet == (p.isBet + p.betAmount));
+        assert(p.isBet == 2);
 
         //If player doesn't have enough money
         p.money = 1;
         p.bet(1);
-        assert(System.out.equals("Not enough money"));
+        assert(p.isBet == 2);
     }
 
+    @Test
+    public void testStay() {
+        g.newGame();
+        g.p.score = 3;
+        p.stay(g);
+        if (g.dealerScore < 22)
+            assert(g.winState == "l");
+        else
+            assert(g.winState == "w");
+        g.p.score = 21;
+        p.stay(g);
+        if (g.dealerScore == 21)
+            assert(g.winState == "t");
+        else
+            assert(g.winState == "w");
 
+    }
+
+    @Test
+    public void testSplit(){
+        g.newGame();
+        p.split(g);
+        if((g.cols.get(1).get(0).getValue() == g.cols.get(1).get(1).getValue()) && (g.cols.get(1).size() == 2)) {
+            assert(g.cols.get(2).size() == 1);
+        }
+        else
+            assert(g.cols.get(2).size() == 0); //should be empty as that split is illegal
+    }
+
+    @Test
+    public void testDoubleDown()
+    {
+        g.newGame();
+
+        int i = 1;
+        int testBetAmount = 2;
+        int prevSize, prevBet;
+        prevSize = g.deck.size();
+        prevBet = p.isBet;
+        p.doubleDown(i,g);
+
+
+        assert(p.isBet == (prevBet + testBetAmount));
+
+    }
 }
