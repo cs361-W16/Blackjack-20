@@ -33,20 +33,43 @@ public class testPlayer {
 
     @Test
     public void testStay() {
-        g.newGame();
+        Card king = new Card(10, Suit.Clubs);
+        Card ace = new Card(11, Suit.Diamonds);
+        Card two = new Card(2, Suit.Hearts);
+
+        g.addCardToCol(0,king);
+        g.addCardToCol(0,ace);
         g.p.score = 3;
         p.stay(g);
-        if (g.dealerScore < 22)
-            assert(g.winState == "l");
-        else
-            assert(g.winState == "w");
+        assert(g.winState == "l");
+
+        g.p.score = 20;
+        p.stay(g);
+        assert(g.winState == "t");
+
         g.p.score = 21;
         p.stay(g);
-        if (g.dealerScore == 21)
-            assert(g.winState == "t");
-        else
-            assert(g.winState == "w");
+        assert(g.winState == "w");
 
+        g.p.score = 25;
+        p.stay(g);
+        assert(g.winState == "l");
+        g.p.score = 10;
+
+        g.SwinState = "p";
+        g.p.splitScore = 15;
+        p.stay(g);
+        assert(g.SwinState == "l");
+
+        g.SwinState = "p";
+        g.p.splitScore = 20;
+        p.stay(g);
+        assert(g.SwinState == "t");
+
+        g.SwinState = "p";
+        g.p.splitScore = 21;
+        p.stay(g);
+        assert(g.SwinState == "w");
     }
 
     @Test
