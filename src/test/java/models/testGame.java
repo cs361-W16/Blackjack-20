@@ -9,64 +9,66 @@ import static org.junit.Assert.*;
  */
 public class testGame {
 
-    @Test
-    public void testAmericanGameCreation() {
-        Game g = new AmericanGame();
-        assertNotNull(g);
-    }
+    Game g = new Game();
+    Player p = new Player();
+    Card c = new Card(5, Suit.Hearts);
 
     @Test
-    public void testAmericanDeckCount(){
-        AmericanGame g = new AmericanGame();
-        assertEquals(52,g.deck.size());
-        g.remove(2);
+    public void testGameCreation(){
+        //Game g = new Game();
+        assertNotNull(g);
+    }
+    @Test
+    public void testDeckCount(){
+       Game g = new Game();
+        g.buildDeck();
+       assertEquals(52,g.deck.size());
+        g.deck.remove(51);
         assertEquals(51,g.deck.size());
     }
 
+
     @Test
     public void testGameBuildDeck(){
-        AmericanGame g = new AmericanGame();
+        //Game g = new Game();
+        g.buildDeck();
         assertEquals(52,g.deck.size());
     }
 
     @Test
     public void testGameInit(){
-        AmericanGame g = new AmericanGame();
+       // Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        assertNotEquals(2,g.deck.get(0).getValue());
-    }
-
-    @Test
-    public void testGameStart(){
-        AmericanGame g = new AmericanGame();
-        g.buildDeck();
-        g.shuffle();
-        g.dealFour();
-        assertEquals(1,g.cols.get(0).size());
-        assertEquals(1,g.cols.get(1).size());
-        assertEquals(1,g.cols.get(2).size());
-        assertEquals(1,g.cols.get(3).size());
+        assertNotEquals(2,g.deck.get(0).getValue()); //this might fail randomly, should be improved
     }
 
     @Test
     public void testCustomDeal(){
-        AmericanGame g = new AmericanGame();
+        //Game g = new Game();
         g.buildDeck();
-        g.customDeal(0,3,6,9);
-        assertEquals("2Clubs",g.cols.get(0).get(0).toString());
-        assertEquals("3Clubs",g.cols.get(1).get(0).toString());
-        assertEquals("4Clubs",g.cols.get(2).get(0).toString());
-        assertEquals("5Clubs",g.cols.get(3).get(0).toString());
+//        g.customDeal(0,3,6,9); Still not sure how this works, nor do we actually use it for anything
+//        assertEquals("2Clubs",g.cols.get(0).get(0).toString());
+//        assertEquals("3Clubs",g.cols.get(1).get(0).toString());
+//        assertEquals("4Clubs",g.cols.get(2).get(0).toString());
+//        assertEquals("5Clubs",g.cols.get(3).get(0).toString());
     }
 
+
+
+
+    //This needs improvement
     @Test
-    public void testRemoveFunction(){
-        AmericanGame g = new AmericanGame();
+    public void testHit()
+    {
         g.buildDeck();
-        g.customDeal(0,3,6,9);
-        g.remove(2);
-        assertEquals(0,g.cols.get(2).size());
+        int i = 1;
+        int prevSize;
+        prevSize = g.deck.size();
+        g.hit(i);
+
+        assert(g.deck.size() == (prevSize - 1));
+        assert(g.cols.get(i).size() == 1);
     }
 
 

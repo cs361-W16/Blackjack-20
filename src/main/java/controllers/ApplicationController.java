@@ -18,10 +18,10 @@ package controllers;
 
 import models.Card;
 import models.Game;
+import models.Player;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
-import models.AmericanGame;
 
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
@@ -37,29 +37,67 @@ public class ApplicationController {
     public Result Blackjack() {
         return Results.html().template("views/Blackjack/Blackjack.flt.html");
     }
+    
     public Result gameGet(){
-        Game g = new AmericanGame();
-        g.shuffle();
-        g.dealFour();
-
+        Game g = new Game();
+        g.newGame();
         return Results.json().render(g);
     }
 
-    public Result dealPost(Context context, AmericanGame g) {
-        if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+    public Result newGame(Context context, Game g) {
+        g.newGame();
+        return Results.json().render(g);
+    }
+
+    public Result split(Context context, Game g) {
+        if(context.getRequestPath().contains("split")){
+            g.p.split(g);
         }
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, AmericanGame g){
-        g.remove(colNumber);
-        return  Results.json().render(g);
-    }
-
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, AmericanGame g) {
-        g.move(colFrom, colTo);
+    public Result stay(Context context, Game g) {
+        if(context.getRequestPath().contains("stay")){
+            g.p.stay(g);
+        }
         return Results.json().render(g);
     }
 
+    public Result doubleDown1(Context context, Game g) {
+        g.p.doubleDown(1, g);
+        return Results.json().render(g);
+    }
+
+    public Result doubleDown2(Context context, Game g) {
+        g.p.doubleDown(2, g);
+        return Results.json().render(g);
+    }
+
+    public Result hit11(Context context, Game g) {
+
+        if (context.getRequestPath().contains("hit")) {
+            g.hit(1);
+        }
+        return Results.json().render(g);
+    }
+    public Result hit22(Context context, Game g) {
+
+        if (context.getRequestPath().contains("hit")) {
+            g.hit(2);
+        }
+        return Results.json().render(g);
+    }
+/*
+    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+        g.remove(colNumber);
+        return  Results.json().render(g);
+    }
+*/
+   public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g) {
+        g.move(colFrom, colTo);
+        return Results.json().render(g);
+    }
 }
+
+
+
