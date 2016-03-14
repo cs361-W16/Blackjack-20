@@ -9,6 +9,8 @@ public class testPlayer {
 
     Game g = new Game();
     Player p = new Player();
+    Card testCard1 = new Card(10, Suit.Clubs);
+    Card testCard2 = new Card(9, Suit.Hearts);
 
     @Test
     public void testBet()
@@ -49,13 +51,17 @@ public class testPlayer {
 
     @Test
     public void testSplit(){
-        g.newGame();
+        g.addCardToCol(1,testCard1);
+        g.addCardToCol(1,testCard1);
         p.split(g);
-        if((g.cols.get(1).get(0).getValue() == g.cols.get(1).get(1).getValue()) && (g.cols.get(1).size() == 2)) {
-            assert(g.cols.get(2).size() == 1);
-        }
-        else
-            assert(g.cols.get(2).size() == 0); //should be empty as that split is illegal
+        assert(g.cols.get(2).size() == 1);
+
+        g.cols.get(1).clear();
+        g.cols.get(2).clear();
+        g.addCardToCol(1,testCard1);
+        g.addCardToCol(1,testCard2);
+        p.split(g);
+        assert(g.cols.get(2).size() == 0); //should be empty as that split is illegal
     }
 
     @Test

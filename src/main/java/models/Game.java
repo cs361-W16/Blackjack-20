@@ -127,6 +127,7 @@ public class Game {
         deck.remove(c4);
     }
     */
+  /*
     public void remove(int columnNumber) {
         if(colHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
@@ -148,7 +149,7 @@ public class Game {
             }
         }
     }
-
+*/
     private boolean colHasCards(int colNumber) {
         return this.cols.get(colNumber).size() > 0;
     }
@@ -173,7 +174,7 @@ public class Game {
         }
     }
 
-    private void addCardToCol(int colTo, Card cardToMove) {
+    public void addCardToCol(int colTo, Card cardToMove) {
         cols.get(colTo).add(cardToMove);
     }
 

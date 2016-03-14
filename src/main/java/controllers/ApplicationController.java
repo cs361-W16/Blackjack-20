@@ -87,12 +87,12 @@ public class ApplicationController {
         }
         return Results.json().render(g);
     }
-
+/*
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
         g.remove(colNumber);
         return  Results.json().render(g);
     }
-
+*/
    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g) {
         g.move(colFrom, colTo);
         return Results.json().render(g);

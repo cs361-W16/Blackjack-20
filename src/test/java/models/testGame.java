@@ -11,6 +11,7 @@ public class testGame {
 
     Game g = new Game();
     Player p = new Player();
+    Card c = new Card(5, Suit.Hearts);
 
     @Test
     public void testGameCreation(){
@@ -52,7 +53,6 @@ public class testGame {
 //        assertEquals("4Clubs",g.cols.get(2).get(0).toString());
 //        assertEquals("5Clubs",g.cols.get(3).get(0).toString());
     }
-
 
 
 
